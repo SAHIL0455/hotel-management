@@ -10,18 +10,27 @@ public class HotelManagement {
     public static HotelManagement hotelManagement = new HotelManagement();
     Hotel hotel;
 
-    public void addHotel(String name, int weekDayRate,int weekEndRate) {
+    public void addHotel(String name, int weekDayRate, int weekEndRate, int rating) {
         hotel = new Hotel();
         hotel.setName(name);
         hotel.setWeekDayRate(weekDayRate);
         hotel.setWeekEndRate(weekEndRate);
+        hotel.setRatings(rating);
         hotelList.add(hotel);
     }
 
     public void insertHotels() {
-        hotelManagement.addHotel("sai", 500,700);
-        hotelManagement.addHotel("savali", 700,600);
-        hotelManagement.addHotel("Taj",1200,1500);
+        hotelManagement.addHotel("sai", 500, 700, 3);
+        hotelManagement.addHotel("savali", 700, 600, 4);
+        hotelManagement.addHotel("Taj", 1200, 1500, 5);
+    }
+
+    private Optional cheapestHotelWeekEnd() {
+        return hotelList.stream().min(Comparator.comparing(Hotel::getWeekEndRate));
+    }
+
+    private Optional cheapestHotelWeekDay() {
+        return hotelList.stream().min(Comparator.comparing(Hotel::getWeekDayRate));
     }
 
     public static void main(String[] args) {
@@ -32,13 +41,5 @@ public class HotelManagement {
         LocalDate endDate = LocalDate.of(2022, 7, 23);
         System.out.println("Cheapest Rate of WeekDay hotel is: \n" + hotelManagement.cheapestHotelWeekDay());
         System.out.println("Cheapest Rate of WeekEnd hotel is: \n" + hotelManagement.cheapestHotelWeekEnd());
-    }
-
-    private Optional cheapestHotelWeekEnd() {
-        return hotelList.stream().min(Comparator.comparing(Hotel::getWeekEndRate));
-    }
-
-    private Optional cheapestHotelWeekDay() {
-        return hotelList.stream().min(Comparator.comparing(Hotel::getWeekDayRate));
     }
 }

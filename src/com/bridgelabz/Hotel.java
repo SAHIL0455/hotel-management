@@ -4,13 +4,15 @@ public class Hotel {
     String name;
     int weekDayRate;
     int weekEndRate;
+    int ratings;
     public Hotel() {
     }
 
-    public Hotel(String name, int weekDayRate,int weekEndRate) {
+    public Hotel(String name, int weekDayRate,int weekEndRate, int ratings) {
         this.name = name;
         this.weekDayRate = weekDayRate;
         this.weekEndRate = weekEndRate;
+        this.ratings = ratings;
     }
 
     @Override
@@ -19,7 +21,16 @@ public class Hotel {
                 "name='" + name + '\'' +
                 ", weekDayRate=" + weekDayRate +
                 ", weekEndRate=" + weekEndRate +
+                ", ratings=" + ratings +
                 '}';
+    }
+
+    public int getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(int ratings) {
+        this.ratings = ratings;
     }
 
     public String getName() {
