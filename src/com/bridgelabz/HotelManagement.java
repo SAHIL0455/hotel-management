@@ -32,6 +32,9 @@ public class HotelManagement {
     private Optional cheapestHotelWeekDay() {
         return hotelList.stream().min(Comparator.comparing(Hotel::getWeekDayRate));
     }
+    private Optional bestRatingHotel() {
+        return hotelList.stream().max(Comparator.comparing(Hotel::getRatings));
+    }
 
     public static void main(String[] args) {
         System.out.println("WelCome the Hotel Management");
@@ -41,5 +44,6 @@ public class HotelManagement {
         LocalDate endDate = LocalDate.of(2022, 7, 23);
         System.out.println("Cheapest Rate of WeekDay hotel is: \n" + hotelManagement.cheapestHotelWeekDay());
         System.out.println("Cheapest Rate of WeekEnd hotel is: \n" + hotelManagement.cheapestHotelWeekEnd());
+        System.out.println("Best Rating hotel is: \n" + hotelManagement.bestRatingHotel());
     }
 }
