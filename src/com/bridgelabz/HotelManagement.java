@@ -20,7 +20,8 @@ public class HotelManagement {
 
     public void insertHotels() {
         hotelManagement.addHotel("sai", 500,700);
-        hotelManagement.addHotel("savali", 700,1000);
+        hotelManagement.addHotel("savali", 700,600);
+        hotelManagement.addHotel("Taj",1200,1500);
     }
 
     public static void main(String[] args) {
@@ -29,10 +30,15 @@ public class HotelManagement {
         System.out.println(hotelList);
         LocalDate startDate = LocalDate.of(2022, 7, 22);
         LocalDate endDate = LocalDate.of(2022, 7, 23);
-        System.out.println("Cheapest Rate of WeekDay hotel is: \n" + hotelManagement.cheapestHotel());
+        System.out.println("Cheapest Rate of WeekDay hotel is: \n" + hotelManagement.cheapestHotelWeekDay());
+        System.out.println("Cheapest Rate of WeekEnd hotel is: \n" + hotelManagement.cheapestHotelWeekEnd());
     }
 
-    private Optional cheapestHotel() {
+    private Optional cheapestHotelWeekEnd() {
+        return hotelList.stream().min(Comparator.comparing(Hotel::getWeekEndRate));
+    }
+
+    private Optional cheapestHotelWeekDay() {
         return hotelList.stream().min(Comparator.comparing(Hotel::getWeekDayRate));
     }
 }
