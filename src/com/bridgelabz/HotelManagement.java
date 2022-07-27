@@ -1,6 +1,9 @@
 package com.bridgelabz;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Optional;
 
 public class HotelManagement {
     public static ArrayList hotelList = new ArrayList<>();
@@ -23,5 +26,12 @@ public class HotelManagement {
         System.out.println("WelCome the Hotel Management");
         hotelManagement.insertHotels();
         System.out.println(hotelList);
+        LocalDate startDate = LocalDate.of(2022,7,22);
+        LocalDate endDate = LocalDate.of(2022,7,23);
+        System.out.println("Cheapest hotel is: \n"+hotelManagement.cheapestHotel());
+    }
+
+    private Optional cheapestHotel() {
+       return hotelList.stream().min(Comparator.comparing(Hotel::getRates));
     }
 }
